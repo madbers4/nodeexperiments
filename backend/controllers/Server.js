@@ -13,9 +13,4 @@ module.exports = class {
         console.log('Start Server...');
         this.http.createServer(this.parent.events.server.onNewRequest.bind(this)).listen(this.port);
     }
-
-    newRequest (req, res) {
-        res.write('Hello World!');
-        res.end();
-    }
 };

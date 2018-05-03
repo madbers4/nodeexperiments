@@ -13,6 +13,6 @@ module.exports = class {
     }
 
     onNewRequest (req, res) {
-        this.parent.controllers.server.newRequest(req, res);
+        this.parent.controllers.router.newRequest(req, res);
     }
 };

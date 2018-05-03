@@ -3,6 +3,7 @@
  */
 let paths = {
     Server : "Server",
+    Router : "Router"
 };
 
 for (let [key, value] of Object.entries(paths)) {

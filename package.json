@@ -1,0 +1,26 @@
+{
+  "name": "nodeexperiments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/frontend.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madbers4/nodeexperiments.git"
+  },
+  "author": "MadBers4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madbers4/nodeexperiments/issues"
+  },
+  "homepage": "https://github.com/madbers4/nodeexperiments#readme",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "webpack": "^4.6.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.1.2"
+  }
+}

@@ -27,6 +27,7 @@ module.exports = class ObjectManager {
 
     initControllers() {
         this.controllers.server = new this.Controllers.Server(this);
+        this.controllers.router = new this.Controllers.Router(this);
     }
 
     initEvents () {
