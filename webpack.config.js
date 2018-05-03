@@ -1,8 +1,8 @@
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './frontend.js',
     output: {
-        filename: './../web/index2.js'
+        filename: './../web/index.js',
     }
 };

@@ -7,10 +7,11 @@ module.exports = class {
 
         this.http = require('http');
         this.port = 80;
+        this.url = '127.0.0.9';
     }
 
     start () {
         console.log('Start Server...');
-        this.http.createServer(this.parent.events.server.onNewRequest.bind(this)).listen(this.port);
+        this.http.createServer(this.parent.events.server.onNewRequest.bind(this)).listen(this.port, this.url);
     }
 };

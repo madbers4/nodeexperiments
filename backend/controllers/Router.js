@@ -4,13 +4,11 @@
 module.exports = class {
     constructor (parent) {
         this.parent = parent;
-
-        this.http = require('http');
-        this.port = 80;
     }
 
     newRequest (req, res) {
-        res.write('Hello World!');
+        this.parent.views.frontendBuild.reloadFile();
+        res.write(this.parent.views.frontendBuild.getData());
         res.end();
     }
 };

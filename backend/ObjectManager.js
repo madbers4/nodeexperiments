@@ -1,16 +1,13 @@
 /**
  * Created by CERN on 03.05.2018.
  */
-let Controllers = require('./controllers');
-let Events = require('./events');
-//require('./models');
-//require('./views');
 
 module.exports = class ObjectManager {
     constructor() {
+
         this.Controllers = require('./controllers');
         this.Events = require('./events');
-//require('./models');
+        this.Views = require('./views');
 //require('./views');
         this.controllers = {};
         this.events = {};
@@ -19,10 +16,11 @@ module.exports = class ObjectManager {
 
         this.initControllers();
         this.initEvents();
+        this.initViews();
 
         setTimeout(function () {
             console.log(this);
-        }.bind(this), 0)
+        }.bind(this), 0);
     }
 
     initControllers() {
@@ -32,5 +30,9 @@ module.exports = class ObjectManager {
 
     initEvents () {
         this.events.server = new this.Events.Server(this);
+    }
+
+    initViews () {
+        this.views.frontendBuild = new this.Views.FrontendBuild();
     }
 };
