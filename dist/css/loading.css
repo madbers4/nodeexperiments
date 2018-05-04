@@ -10,14 +10,20 @@
     background: linear-gradient( to bottom right, rgba(6, 0, 255, 0.3), rgba(255, 0, 0, 0.3));
 }
 
-.right {
+#loading .right {
     float: left;
     color: #FFF;
     width: 50%;
     text-align: right;
 }
+#loading .center {
+    float: left;
+    color: #ff0100;
+    width: 100%;
+    text-align: center;
+}
 
-.left {
+#loading .left {
     float: left;
     color: #7a7a7a;
     width: 50%;
@@ -30,7 +36,7 @@
     margin-top: 40px;
 }
 
-h1,
+#loading h1,
 h4 {
     -webkit-transition: opacity .25s;
     -moz-transition: opacity .25s;
@@ -40,18 +46,18 @@ h4 {
     font-family: "FARCRY", Verdana, Tahoma;
 }
 
-h1 {
+#loading h1 {
     font-size: 6vw;
 }
 
-h4 {
+#loading h4 {
     font-size: 3vw;
 }
 
-h4:first-child {
+#loading h4:first-child {
     margin-bottom: -2vw;
 }
 
-h4:last-child {
+#loading h4:last-child {
     margin-top: -1.7vw;
 }

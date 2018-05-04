@@ -90,7 +90,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/**\r\n * Created by CERN on 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\n\r\nlet Controllers = __webpack_require__(/*! ./controllers */ \"./frontend/controllers/index.js\");\r\nlet Events = __webpack_require__(/*! ./events */ \"./frontend/events/index.js\");\r\n//require('./models');\r\n//require('./views');\r\n\r\nmodule.exports = class ObjectManager {\r\n    constructor() {\r\n        this.Controllers = __webpack_require__(/*! ./controllers */ \"./frontend/controllers/index.js\");\r\n        this.Events = __webpack_require__(/*! ./events */ \"./frontend/events/index.js\");\r\n        this.Models = __webpack_require__(/*! ./models */ \"./frontend/models/index.js\");\r\n        this.Views = __webpack_require__(/*! ./views */ \"./frontend/views/index.js\");\r\n\r\n        this.controllers = {};\r\n        this.events = {};\r\n        this.models = {};\r\n        this.views = {};\r\n\r\n        this.initModels();\r\n        this.initControllers();\r\n        this.initEvents();\r\n        this.initViews();\r\n\r\n        setTimeout(function () {\r\n            this.controllers.loading.start();\r\n        }.bind(this), 0)\r\n    }\r\n\r\n    initControllers() {\r\n        this.controllers.loading = new this.Controllers.Loading(this);\r\n    }\r\n\r\n    initEvents () {\r\n        this.events.loading = new this.Events.Loading(this);\r\n    }\r\n\r\n    initModels () {\r\n        this.models.ajax = new this.Models.Ajax();\r\n    }\r\n\r\n    initViews () {\r\n        this.views.loading = new this.Views.Loading();\r\n    }\r\n};\n\n//# sourceURL=webpack:///./frontend/ObjectManager.js?");
+eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\n\r\nmodule.exports = class ObjectManager {\r\n    constructor() {\r\n        this.Controllers = __webpack_require__(/*! ./controllers */ \"./frontend/controllers/index.js\");\r\n        this.Events = __webpack_require__(/*! ./events */ \"./frontend/events/index.js\");\r\n        this.Models = __webpack_require__(/*! ./models */ \"./frontend/models/index.js\");\r\n        this.Views = __webpack_require__(/*! ./views */ \"./frontend/views/index.js\");\r\n\r\n        this.controllers = {};\r\n        this.events = {};\r\n        this.models = {};\r\n        this.views = {};\r\n\r\n        this.initModels();\r\n        this.initControllers();\r\n        this.initEvents();\r\n        this.initViews();\r\n\r\n        setTimeout(function () {\r\n            this.controllers.loading.start();\r\n            this.controllers.game.start();\r\n            this.views.loading.hide();\r\n        }.bind(this), 0)\r\n    }\r\n\r\n    initControllers() {\r\n        this.controllers.loading = new this.Controllers.Loading(this);\r\n        this.controllers.game = new this.Controllers.Game(this);\r\n    }\r\n\r\n    initEvents () {\r\n        this.events.loading = new this.Events.Loading(this);\r\n        this.events.game = new this.Events.Game(this);\r\n    }\r\n\r\n    initModels () {\r\n        this.models.ajax = new this.Models.Ajax();\r\n        //this.models.cube = new this.Models.Cube();\r\n    }\r\n\r\n    initViews () {\r\n        this.views.loading = new this.Views.Loading();\r\n    }\r\n};\n\n//# sourceURL=webpack:///./frontend/ObjectManager.js?");
 
 /***/ }),
 
@@ -101,7 +101,18 @@ eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\n\r\nlet Controllers = _
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./\": \"./frontend/controllers/index.js\",\n\t\"./Loading\": \"./frontend/controllers/Loading.js\",\n\t\"./Loading.js\": \"./frontend/controllers/Loading.js\",\n\t\"./index\": \"./frontend/controllers/index.js\",\n\t\"./index.js\": \"./frontend/controllers/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/controllers sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/controllers_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./\": \"./frontend/controllers/index.js\",\n\t\"./Game\": \"./frontend/controllers/Game.js\",\n\t\"./Game.js\": \"./frontend/controllers/Game.js\",\n\t\"./Loading\": \"./frontend/controllers/Loading.js\",\n\t\"./Loading.js\": \"./frontend/controllers/Loading.js\",\n\t\"./index\": \"./frontend/controllers/index.js\",\n\t\"./index.js\": \"./frontend/controllers/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/controllers sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/controllers_sync_^\\.\\/.*$?");
+
+/***/ }),
+
+/***/ "./frontend/controllers/Game.js":
+/*!**************************************!*\
+  !*** ./frontend/controllers/Game.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor (parent) {\r\n        this.parent = parent;\r\n        this.gameObjects = {};\r\n\r\n        this.createACube('Cube_001');\r\n        parent.events.game.engineOn();\r\n        parent.events.game.gameEventsOn();\r\n    }\r\n\r\n    start () {\r\n        this.showCube('Cube_001');\r\n    }\r\n\r\n    createACube(cubeName) {\r\n        this.gameObjects[cubeName] = {};\r\n        this.gameObjects[cubeName].parameters = new this.parent.Models.Cube();\r\n        let paramaters = this.gameObjects[cubeName].parameters;\r\n        this.gameObjects[cubeName].view = new this.parent.Views.Cube();\r\n        let view = this.gameObjects[cubeName].view;\r\n        view.resize(paramaters.width, paramaters.height);\r\n        view.move(paramaters.x, paramaters.y);\r\n    }\r\n\r\n    showCube(cubeName) {\r\n        this.gameObjects[cubeName].view.respawn();\r\n    }\r\n\r\n    loop() {\r\n        let lupnum = 0;\r\n        console.log(lupnum);\r\n    }\r\n\r\n    onClick() {\r\n        console.log(event.clientX);\r\n        console.log(event.clientY);\r\n    }\r\n};\n\n//# sourceURL=webpack:///./frontend/controllers/Game.js?");
 
 /***/ }),
 
@@ -123,7 +134,7 @@ eval("/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/controllers sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/controllers/index.js?");
+eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n    Game : \"Game\",\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/controllers sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/controllers/index.js?");
 
 /***/ }),
 
@@ -134,7 +145,18 @@ eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Lo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./\": \"./frontend/events/index.js\",\n\t\"./Loading\": \"./frontend/events/Loading.js\",\n\t\"./Loading.js\": \"./frontend/events/Loading.js\",\n\t\"./index\": \"./frontend/events/index.js\",\n\t\"./index.js\": \"./frontend/events/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/events sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/events_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./\": \"./frontend/events/index.js\",\n\t\"./Game\": \"./frontend/events/Game.js\",\n\t\"./Game.js\": \"./frontend/events/Game.js\",\n\t\"./Loading\": \"./frontend/events/Loading.js\",\n\t\"./Loading.js\": \"./frontend/events/Loading.js\",\n\t\"./index\": \"./frontend/events/index.js\",\n\t\"./index.js\": \"./frontend/events/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/events sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/events_sync_^\\.\\/.*$?");
+
+/***/ }),
+
+/***/ "./frontend/events/Game.js":
+/*!*********************************!*\
+  !*** ./frontend/events/Game.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor (parent) {\r\n        this.parent = parent;\r\n\r\n        this.fps = 60;\r\n    }\r\n\r\n    engineOn() {\r\n        setInterval(this.timer.bind(this), 1000/this.fps);\r\n    }\r\n\r\n    gameEventsOn() {\r\n        $('html').on('click', this.onClick.bind(this));\r\n    }\r\n\r\n    timer (data) {\r\n        this.parent.controllers.game.loop();\r\n    }\r\n\r\n    onClick () {\r\n        this.parent.controllers.game.onClick();\r\n    }\r\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./frontend/events/Game.js?");
 
 /***/ }),
 
@@ -156,7 +178,7 @@ eval("/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/events sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/events/index.js?");
+eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n    Game : 'Game'\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/events sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/events/index.js?");
 
 /***/ }),
 
@@ -167,7 +189,7 @@ eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Lo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./\": \"./frontend/models/index.js\",\n\t\"./Ajax\": \"./frontend/models/Ajax.js\",\n\t\"./Ajax.js\": \"./frontend/models/Ajax.js\",\n\t\"./index\": \"./frontend/models/index.js\",\n\t\"./index.js\": \"./frontend/models/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/models sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/models_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./\": \"./frontend/models/index.js\",\n\t\"./Ajax\": \"./frontend/models/Ajax.js\",\n\t\"./Ajax.js\": \"./frontend/models/Ajax.js\",\n\t\"./Cube\": \"./frontend/models/Cube.js\",\n\t\"./Cube.js\": \"./frontend/models/Cube.js\",\n\t\"./index\": \"./frontend/models/index.js\",\n\t\"./index.js\": \"./frontend/models/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/models sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/models_sync_^\\.\\/.*$?");
 
 /***/ }),
 
@@ -182,6 +204,17 @@ eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.0
 
 /***/ }),
 
+/***/ "./frontend/models/Cube.js":
+/*!*********************************!*\
+  !*** ./frontend/models/Cube.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor (parent) {\r\n        this.x = 50;\r\n        this.y = 100;\r\n        this.width = 50;\r\n        this.height = 50;\r\n    }\r\n};\n\n//# sourceURL=webpack:///./frontend/models/Cube.js?");
+
+/***/ }),
+
 /***/ "./frontend/models/index.js":
 /*!**********************************!*\
   !*** ./frontend/models/index.js ***!
@@ -189,7 +222,7 @@ eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.0
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Ajax : \"Ajax\",\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/models sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/models/index.js?");
+eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Ajax : \"Ajax\",\r\n    Cube : \"Cube\"\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/models sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/models/index.js?");
 
 /***/ }),
 
@@ -200,7 +233,18 @@ eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Aj
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./\": \"./frontend/views/index.js\",\n\t\"./Loading\": \"./frontend/views/Loading.js\",\n\t\"./Loading.js\": \"./frontend/views/Loading.js\",\n\t\"./index\": \"./frontend/views/index.js\",\n\t\"./index.js\": \"./frontend/views/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/views sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/views_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./\": \"./frontend/views/index.js\",\n\t\"./Cube\": \"./frontend/views/Cube.js\",\n\t\"./Cube.js\": \"./frontend/views/Cube.js\",\n\t\"./Loading\": \"./frontend/views/Loading.js\",\n\t\"./Loading.js\": \"./frontend/views/Loading.js\",\n\t\"./index\": \"./frontend/views/index.js\",\n\t\"./index.js\": \"./frontend/views/index.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\tvar module = __webpack_require__(id);\n\treturn module;\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error('Cannot find module \"' + req + '\".');\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./frontend/views sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./frontend/views_sync_^\\.\\/.*$?");
+
+/***/ }),
+
+/***/ "./frontend/views/Cube.js":
+/*!********************************!*\
+  !*** ./frontend/views/Cube.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor() {\r\n        this.$body = $('body');\r\n        this.$cube = $('<div id=\"cube\"></div>');\r\n        console.log(this.$cube);\r\n    }\r\n\r\n    move(x, y) {\r\n        if (x!==undefined) {\r\n            this.$cube.css('top', x + 'px');\r\n        }\r\n        if (x!==undefined) {\r\n            this.$cube.css('left', y + 'px');\r\n        }\r\n    }\r\n\r\n    resize(width, height) {\r\n        if (width!==undefined) {\r\n           this.$cube.css('width', width + 'px');\r\n       }\r\n        if (height!==undefined) {\r\n            this.$cube.css('height', height + 'px');\r\n        }\r\n    }\r\n\r\n    respawn () {\r\n        this.$body.append(this.$cube);\r\n    }\r\n\r\n    show() {\r\n        this.$cube.show();\r\n    }\r\n\r\n    hide() {\r\n        this.$cube.hide();\r\n    }\r\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./frontend/views/Cube.js?");
 
 /***/ }),
 
@@ -211,7 +255,7 @@ eval("var map = {\n\t\"./\": \"./frontend/views/index.js\",\n\t\"./Loading\": \"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor() {\r\n        this.$body = $('body');\r\n        this.words = [\"LOADING\", \"TEST\", \"CODE\", \"ARRAY\", \"INTEGER\", \"FLOAT\", \"LUCK\", \"GIT\", \"JS\", \"CSS\", \"NODE\", \"EXPERIMENTS\", \"ORGANIZATION\"];\r\n        this.stop = false;\r\n    }\r\n\r\n    getData() {\r\n    }\r\n\r\n    show() {\r\n        this.$body.append(`\r\n<div id=\"loading\">\r\n    <div class=\"right\">\r\n        <h4 class=\"randoms\"></h4>\r\n        <h1 class=\"randoms\"></h1>\r\n        <h4 class=\"randoms\"></h4>\r\n    </div>\r\n    <div class=\"left\">\r\n        <h4 class=\"randoms\"></h4>\r\n        <h1 class=\"randoms\"></h1>\r\n        <h4 class=\"randoms\"></h4>\r\n    </div>\r\n</div>`);\r\n        this.$loading = $('#loading');\r\n        let randoms = window.document.getElementsByClassName(\"randoms\");\r\n        for (let i = 0; i < randoms.length; i++) {\r\n            this.changeWord(randoms[i]);\r\n        }\r\n        this.$loading.show('slow');\r\n    }\r\n\r\n    hide() {\r\n        this.$loading.hide('slow');\r\n        this.stop = true;\r\n    }\r\n\r\n    getRandomInt(min, max) {\r\n        return Math.floor(Math.random() * (max - min + 1)) + min;\r\n    }\r\n\r\n    changeWord(a) {\r\n        a.style.opacity = '0.1';\r\n        a.innerHTML = this.words[this.getRandomInt(0, this.words.length - 1)];\r\n        setTimeout(function () {\r\n            a.style.opacity = '1';\r\n        }.bind(this), 425);\r\n        if (!this.stop) {\r\n            setTimeout(function () {\r\n                this.changeWord(a);\r\n            }.bind(this), this.getRandomInt(500, 800));\r\n        }\r\n    }\r\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./frontend/views/Loading.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.05.2018.\r\n */\r\nmodule.exports = class {\r\n    constructor() {\r\n        this.$body = $('body');\r\n        this.words = [\"LOADING\", \"TEST\", \"CODE\", \"JQUERY\", \"INTEGER\", \"FLOAT\", \"LUCK\", \"GIT\", \"JS\", \"CSS\", \"NODE\", \"EXPERIMENTS\", \"ORGANIZATION\"];\r\n    }\r\n\r\n    getData() {\r\n    }\r\n\r\n    show() {\r\n        this.$body.append(`\r\n<div id=\"loading\">\r\n    <div class=\"right\">\r\n        <h4 class=\"randoms\"></h4>\r\n        <h1 class=\"randoms\"></h1>\r\n        <h4 class=\"randoms\"></h4>\r\n    </div>\r\n    <div class=\"left\">\r\n        <h4 class=\"randoms\"></h4>\r\n        <h1 class=\"randoms\"></h1>\r\n        <h4 class=\"randoms\"></h4>\r\n        <h4 class=\"randoms\"></h4>\r\n    </div>\r\n    <div class=\"center\">\r\n        <h1>NODEEXPERIMENTS</h1>\r\n    </div>\r\n</div>`);\r\n        this.$loading = $('#loading');\r\n        this.stop = false;\r\n        let randoms = window.document.getElementsByClassName(\"randoms\");\r\n        for (let i = 0; i < randoms.length; i++) {\r\n            this.changeWord(randoms[i]);\r\n        }\r\n        this.$loading.show('slow');\r\n    }\r\n\r\n    hide() {\r\n        this.$loading.hide('slow');\r\n        this.stop = true;\r\n    }\r\n\r\n    getRandomInt(min, max) {\r\n        return Math.floor(Math.random() * (max - min + 1)) + min;\r\n    }\r\n\r\n    changeWord(a) {\r\n        a.style.opacity = '0.1';\r\n        a.innerHTML = this.words[this.getRandomInt(0, this.words.length - 1)];\r\n        setTimeout(function () {\r\n            a.style.opacity = '1';\r\n        }.bind(this), 425);\r\n        if (!this.stop) {\r\n            setTimeout(function () {\r\n                this.changeWord(a);\r\n            }.bind(this), this.getRandomInt(500, 800));\r\n        }\r\n    }\r\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./frontend/views/Loading.js?");
 
 /***/ }),
 
@@ -222,7 +266,7 @@ eval("/* WEBPACK VAR INJECTION */(function($) {/**\r\n * Created by CERN on 04.0
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/views sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/views/index.js?");
+eval("/**\r\n * Created by CERN on 03.05.2018.\r\n */\r\nlet paths = {\r\n    Loading : \"Loading\",\r\n    Cube : \"Cube\"\r\n};\r\n\r\nfor (let [key, value] of Object.entries(paths)) {\r\n    exports[key] = __webpack_require__(\"./frontend/views sync recursive ^\\\\.\\\\/.*$\")(\"./\" + value);\r\n}\n\n//# sourceURL=webpack:///./frontend/views/index.js?");
 
 /***/ }),
 

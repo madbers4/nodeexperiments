@@ -4,8 +4,7 @@
 module.exports = class {
     constructor() {
         this.$body = $('body');
-        this.words = ["LOADING", "TEST", "CODE", "ARRAY", "INTEGER", "FLOAT", "LUCK", "GIT", "JS", "CSS", "NODE", "EXPERIMENTS", "ORGANIZATION"];
-        this.stop = false;
+        this.words = ["LOADING", "TEST", "CODE", "JQUERY", "INTEGER", "FLOAT", "LUCK", "GIT", "JS", "CSS", "NODE", "EXPERIMENTS", "ORGANIZATION"];
     }
 
     getData() {
@@ -23,9 +22,14 @@ module.exports = class {
         <h4 class="randoms"></h4>
         <h1 class="randoms"></h1>
         <h4 class="randoms"></h4>
+        <h4 class="randoms"></h4>
+    </div>
+    <div class="center">
+        <h1>NODEEXPERIMENTS</h1>
     </div>
 </div>`);
         this.$loading = $('#loading');
+        this.stop = false;
         let randoms = window.document.getElementsByClassName("randoms");
         for (let i = 0; i < randoms.length; i++) {
             this.changeWord(randoms[i]);

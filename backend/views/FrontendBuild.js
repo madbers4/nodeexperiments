@@ -5,7 +5,8 @@ module.exports = class {
     constructor() {
         this.css = [
             'bootstrap',
-            'loading'
+            'loading',
+            'cube'
         ];
         this.js = [
             './web/index.js'

@@ -2,11 +2,6 @@
  * Created by CERN on 03.05.2018.
  */
 
-let Controllers = require('./controllers');
-let Events = require('./events');
-//require('./models');
-//require('./views');
-
 module.exports = class ObjectManager {
     constructor() {
         this.Controllers = require('./controllers');
@@ -26,19 +21,24 @@ module.exports = class ObjectManager {
 
         setTimeout(function () {
             this.controllers.loading.start();
+            this.controllers.game.start();
+            this.views.loading.hide();
         }.bind(this), 0)
     }
 
     initControllers() {
         this.controllers.loading = new this.Controllers.Loading(this);
+        this.controllers.game = new this.Controllers.Game(this);
     }
 
     initEvents () {
         this.events.loading = new this.Events.Loading(this);
+        this.events.game = new this.Events.Game(this);
     }
 
     initModels () {
         this.models.ajax = new this.Models.Ajax();
+        //this.models.cube = new this.Models.Cube();
     }
 
     initViews () {

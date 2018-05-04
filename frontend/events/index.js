@@ -3,6 +3,7 @@
  */
 let paths = {
     Loading : "Loading",
+    Game : 'Game'
 };
 
 for (let [key, value] of Object.entries(paths)) {
