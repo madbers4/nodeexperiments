@@ -17,10 +17,6 @@ module.exports = class ObjectManager {
         this.initControllers();
         this.initEvents();
         this.initViews();
-
-        setTimeout(function () {
-            console.log(this);
-        }.bind(this), 0);
     }
 
     initControllers() {

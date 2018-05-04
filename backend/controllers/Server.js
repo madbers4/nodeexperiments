@@ -11,7 +11,10 @@ module.exports = class {
     }
 
     start () {
-        console.log('Start Server...');
         this.http.createServer(this.parent.events.server.onNewRequest.bind(this)).listen(this.port, this.url);
+    }
+
+    throwHead () {
+
     }
 };

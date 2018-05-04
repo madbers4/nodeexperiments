@@ -2,8 +2,7 @@
  * Created by CERN on 03.05.2018.
  */
 let paths = {
-    rte : "ServerEvents",
-    test : "test"
+    Ajax : "Ajax",
 };
 
 for (let [key, value] of Object.entries(paths)) {
