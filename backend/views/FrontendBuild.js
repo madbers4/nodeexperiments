@@ -6,7 +6,8 @@ module.exports = class {
         this.css = [
             'bootstrap',
             'loading',
-            'cube'
+            'cube',
+            'mainMenu'
         ];
         this.js = [
             './web/index.js'
@@ -21,7 +22,7 @@ module.exports = class {
     }
 
     reloadFile() {
-        this.head = '<head>' + this.createHeadPackage() + '</head>';
+        this.head = '<head><meta charset="UTF-8">' + this.createHeadPackage() + '</head>';
         this.footer = '<footer>' + this.createFooterPackage() + '</footer>';
         this.html = '<!DOCTYPE html><html>' + this.head + '<body>' + this.footer + '</body></html>';
     }

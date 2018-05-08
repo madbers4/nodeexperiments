@@ -3,7 +3,7 @@
  */
 let paths = {
     Loading : "Loading",
-    Cube : "Cube"
+    MainMenu : "MainMenu"
 };
 
 for (let [key, value] of Object.entries(paths)) {

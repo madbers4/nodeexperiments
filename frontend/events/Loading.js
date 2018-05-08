@@ -9,4 +9,8 @@ module.exports = class {
     onGetHead (data) {
         this.parent.controllers.loading.showHead(data);
     }
+
+    onClick() {
+        this.parent.views.loading.hide();
+    }
 };

@@ -8,5 +8,6 @@ module.exports = class {
 
     start () {
         this.parent.views.loading.show();
+        this.parent.views.loading.$loading.click(this.parent.events.loading.onClick.bind(this.parent.events.loading));
     }
 };
