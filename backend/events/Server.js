@@ -2,17 +2,30 @@
  * Created by CERN on 03.05.2018.
  */
 module.exports = class {
-    constructor (parent) {
+    constructor(parent) {
         this.parent = parent;
 
-        setTimeout(this.onLoad.bind(this), 0);
+        this.currentConnection = this.parent.models.currentConnection;
     }
 
-    onLoad () {
-        this.parent.controllers.server.start()
+    getMainPage(req, res) {
+        this.currentConnection.setCurrentConnection(req, res);
+        this.parent.controllers.pages.actionMainPage();
     }
 
-    onNewRequest (req, res) {
-        this.parent.controllers.router.newRequest(req, res);
+    getExchangePage(req, res) {
+        this.currentConnection.setCurrentConnection(req, res);
+        this.parent.controllers.pages.actionExchangePage();
     }
+
+    getTemplatesPage(req, res) {
+        this.currentConnection.setCurrentConnection(req, res);
+        this.parent.controllers.pages.actionTemplatesPage();
+    }
+
+    getSignInPage(req, res) {
+        this.currentConnection.setCurrentConnection(req, res);
+        this.parent.controllers.pages.actionSignInPage();
+    }
+
 };

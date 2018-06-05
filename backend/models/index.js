@@ -2,8 +2,8 @@
  * Created by CERN on 03.05.2018.
  */
 let paths = {
-    rte : "ServerEvents",
-    test : "test"
+    CurrentConnection : "CurrentConnection",
+    Routes : "Routes"
 };
 
 for (let [key, value] of Object.entries(paths)) {

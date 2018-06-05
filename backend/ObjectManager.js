@@ -8,20 +8,22 @@ module.exports = class ObjectManager {
         this.Controllers = require('./controllers');
         this.Events = require('./events');
         this.Views = require('./views');
-//require('./views');
+        this.Models = require('./models');
+
         this.controllers = {};
         this.events = {};
         this.models = {};
         this.views = {};
 
+        this.initModels();
+        this.initViews();
         this.initControllers();
         this.initEvents();
-        this.initViews();
     }
 
     initControllers() {
         this.controllers.server = new this.Controllers.Server(this);
-        this.controllers.router = new this.Controllers.Router(this);
+        this.controllers.pages = new this.Controllers.Pages(this);
     }
 
     initEvents () {
@@ -29,6 +31,10 @@ module.exports = class ObjectManager {
     }
 
     initViews () {
-        this.views.frontendBuild = new this.Views.FrontendBuild();
+    }
+
+    initModels () {
+        this.models.currentConnection = new this.Models.CurrentConnection(this);
+        this.models.routes = new this.Models.Routes(this);
     }
 };

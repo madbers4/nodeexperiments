@@ -21,7 +21,7 @@ module.exports = class ObjectManager {
 
         setTimeout(function () {
             this.controllers.loading.start();
-            this.controllers.game.start();
+            //this.controllers.game.start();
         }.bind(this), 0)
     }
 
