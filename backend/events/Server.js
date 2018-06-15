@@ -28,4 +28,10 @@ module.exports = class {
         this.parent.controllers.pages.actionSignInPage();
     }
 
+    getExchangeOrders(req, res) {
+        this.currentConnection.setCurrentConnection(req, res);
+
+        this.parent.controllers.exchanges.actionGetOrders();
+    }
+
 };

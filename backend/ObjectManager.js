@@ -9,6 +9,7 @@ module.exports = class ObjectManager {
         this.Events = require('./events');
         this.Views = require('./views');
         this.Models = require('./models');
+        this.Tests = require('./tests');
 
         this.controllers = {};
         this.events = {};
@@ -19,11 +20,15 @@ module.exports = class ObjectManager {
         this.initViews();
         this.initControllers();
         this.initEvents();
+
+        this.startTests();
     }
 
     initControllers() {
         this.controllers.server = new this.Controllers.Server(this);
         this.controllers.pages = new this.Controllers.Pages(this);
+        this.controllers.exchanges = new this.Controllers.Exchanges(this);
+
     }
 
     initEvents () {
@@ -36,5 +41,10 @@ module.exports = class ObjectManager {
     initModels () {
         this.models.currentConnection = new this.Models.CurrentConnection(this);
         this.models.routes = new this.Models.Routes(this);
+    }
+
+    startTests() {
+        let WexnzTestObj = new this.Tests.Wexnz(this);
+        WexnzTestObj.startTest();
     }
 };

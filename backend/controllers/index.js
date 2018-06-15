@@ -3,7 +3,8 @@
  */
 let paths = {
     Server : "Server",
-    Pages : "Pages"
+    Pages : "Pages",
+    Exchanges: "Exchanges"
 };
 
 for (let [key, value] of Object.entries(paths)) {

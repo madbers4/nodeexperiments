@@ -35,7 +35,12 @@ module.exports = class {
                     'url': '/sign_in/',
                     'method': this.parent.events.server.getSignInPage,
                     'bindTo': this.parent.events.server
-                }
+                },
+                '/api/ex/': {
+                    'url': '/api/ex/:exchange/orders/:pairs',
+                    'method': this.parent.events.server.getExchangeOrders,
+                    'bindTo': this.parent.events.server
+                },
             };
             this.POSTRoutes = {};
             this.PUTRoutes = {};
