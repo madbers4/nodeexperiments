@@ -27,7 +27,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container row\">\n  <div class=\"col m 6\">\n    <app-buy-orders></app-buy-orders>\n  </div>\n  <div class=\"col m 6\">\n    <app-sell-orders></app-sell-orders>\n  </div>\n  <div class=\"col m 12\">\n    <app-trade-history></app-trade-history>\n  </div>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container row\">\n  <div class=\"col-md-6\">\n    <app-orders [options]=\"sellOrdersTableOptions\" [orders]=\"buyOrders\"></app-orders>\n  </div>\n  <div class=\"col-md-6\">\n    <app-orders [options]=\"buyOrdersTableOptions\" [orders]=\"sellOrders\"></app-orders>\n  </div>\n  <div class=\"col m 12\">\n    <app-trade-history></app-trade-history>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -52,11 +52,40 @@ __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
 var AppComponent = /** @class */ (function () {
     function AppComponent(ordersService) {
         this.ordersService = ordersService;
-        this.orders = [];
     }
     AppComponent.prototype.ngOnInit = function () {
-        //this.orders = this.ordersService.orders
-        this.orders = this.ordersService.getUsers();
+        var _this = this;
+        this.buyOrdersTableOptions = {
+            title: "Buy Orders",
+            currency_1: "BTC",
+            currency_2: "USD"
+        };
+        this.sellOrdersTableOptions = {
+            title: "Sell Orders",
+            currency_1: "BTC",
+            currency_2: "USD"
+        };
+        setInterval(function () {
+            _this.ordersService.getOrders().subscribe(function (orders) {
+                _this.orders = orders;
+                _this.sortOrders();
+            });
+        }, 2000);
+    };
+    AppComponent.prototype.sortOrders = function () {
+        var buyOrders = [];
+        var sellOrders = [];
+        for (var _i = 0, _a = this.orders; _i < _a.length; _i++) {
+            var order = _a[_i];
+            if (order.type == 'buy') {
+                buyOrders.push(order);
+            }
+            else {
+                sellOrders.push(order);
+            }
+        }
+        this.sellOrders = sellOrders;
+        this.buyOrders = buyOrders;
     };
     AppComponent = __decorate([
         core_1.Component({
@@ -89,10 +118,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var app_component_1 = __webpack_require__("./src/app/app.component.ts");
-var buy_orders_component_1 = __webpack_require__("./src/app/buy-orders/buy-orders.component.ts");
-var sell_orders_component_1 = __webpack_require__("./src/app/sell-orders/sell-orders.component.ts");
 var trade_history_component_1 = __webpack_require__("./src/app/trade-history/trade-history.component.ts");
-var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+var orders_component_1 = __webpack_require__("./src/app/orders/orders.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -100,13 +128,12 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                buy_orders_component_1.BuyOrdersComponent,
-                sell_orders_component_1.SellOrdersComponent,
-                trade_history_component_1.TradeHistoryComponent
+                trade_history_component_1.TradeHistoryComponent,
+                orders_component_1.OrdersComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                http_1.HttpModule
+                http_1.HttpClientModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
@@ -115,56 +142,6 @@ var AppModule = /** @class */ (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
-
-
-/***/ }),
-
-/***/ "./src/app/buy-orders/buy-orders.component.css":
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/buy-orders/buy-orders.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h2>Buy Orders</h2>\n<table class=\"table table-striped table-bordered\">\n  <thead>\n  <tr>\n    <th>Price</th>\n    <th>BTC</th>\n    <th>USD</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr>Loading...</tr>\n  </tbody>\n</table>\n"
-
-/***/ }),
-
-/***/ "./src/app/buy-orders/buy-orders.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var BuyOrdersComponent = /** @class */ (function () {
-    function BuyOrdersComponent() {
-    }
-    BuyOrdersComponent.prototype.ngOnInit = function () {
-    };
-    BuyOrdersComponent = __decorate([
-        core_1.Component({
-            selector: 'app-buy-orders',
-            template: __webpack_require__("./src/app/buy-orders/buy-orders.component.html"),
-            styles: [__webpack_require__("./src/app/buy-orders/buy-orders.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], BuyOrdersComponent);
-    return BuyOrdersComponent;
-}());
-exports.BuyOrdersComponent = BuyOrdersComponent;
 
 
 /***/ }),
@@ -185,18 +162,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var OrdersService = /** @class */ (function () {
-    function OrdersService(http) {
-        this.http = http;
-        this.orders = [];
+    function OrdersService(httpClient) {
+        this.httpClient = httpClient;
+        this.config = {
+            "url": "/api/ex/wexnz/orders/btc_ucd"
+        };
     }
-    OrdersService.prototype.getUsers = function () {
-        return this.http.get('/api/ex/wexnz/orders/btc_ucd');
+    OrdersService.prototype.getOrders = function () {
+        return this.httpClient.get(this.config.url, {
+            observe: 'body'
+        });
     };
     OrdersService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
+        __metadata("design:paramtypes", [http_1.HttpClient])
     ], OrdersService);
     return OrdersService;
 }());
@@ -205,21 +186,21 @@ exports.OrdersService = OrdersService;
 
 /***/ }),
 
-/***/ "./src/app/sell-orders/sell-orders.component.css":
+/***/ "./src/app/orders/orders.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "div {\r\n  overflow-y: auto;\r\n  max-height: 780px;\r\n}\r\n"
 
 /***/ }),
 
-/***/ "./src/app/sell-orders/sell-orders.component.html":
+/***/ "./src/app/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Sell Orders</h2>\n<table class=\"table table-striped table-bordered\">\n  <thead>\n  <tr>\n    <th>Price</th>\n    <th>BTC</th>\n    <th>USD</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let order of sellOrders\">\n    <td>{{order.price}}</td>\n    <td>{{order.currency_1}}</td>\n    <td>{{order.currency_2}}</td>\n  </tr>\n  </tbody>\n</table>\n"
+module.exports = "<h2>{{options.title}}</h2>\n<div>\n  <table class=\"table table-striped table-bordered\">\n    <thead>\n    <tr>\n      <th>Price</th>\n      <th>{{options.currency_1}}</th>\n      <th>{{options.currency_2}}</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let order of orders\">\n      <td>{{order.price}}</td>\n      <td>{{order.amount}}</td>\n      <td>{{order.price*order.amount}}</td>\n    </tr>\n    </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 
-/***/ "./src/app/sell-orders/sell-orders.component.ts":
+/***/ "./src/app/orders/orders.component.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -235,39 +216,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var SellOrdersComponent = /** @class */ (function () {
-    function SellOrdersComponent() {
-        this.sellOrders = [
-            {
-                price: 6700,
-                currency_1: 0.01,
-                currency_2: 76
-            },
-            {
-                price: 5700,
-                currency_1: 0.11,
-                currency_2: 77
-            },
-            {
-                price: 676500,
-                currency_1: 0.01,
-                currency_2: 76
-            }
-        ];
+var OrdersComponent = /** @class */ (function () {
+    function OrdersComponent() {
     }
-    SellOrdersComponent.prototype.ngOnInit = function () {
+    OrdersComponent.prototype.ngOnInit = function () {
     };
-    SellOrdersComponent = __decorate([
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], OrdersComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Array)
+    ], OrdersComponent.prototype, "orders", void 0);
+    OrdersComponent = __decorate([
         core_1.Component({
-            selector: 'app-sell-orders',
-            template: __webpack_require__("./src/app/sell-orders/sell-orders.component.html"),
-            styles: [__webpack_require__("./src/app/sell-orders/sell-orders.component.css")]
+            selector: 'app-orders',
+            template: __webpack_require__("./src/app/orders/orders.component.html"),
+            styles: [__webpack_require__("./src/app/orders/orders.component.css")]
         }),
         __metadata("design:paramtypes", [])
-    ], SellOrdersComponent);
-    return SellOrdersComponent;
+    ], OrdersComponent);
+    return OrdersComponent;
 }());
-exports.SellOrdersComponent = SellOrdersComponent;
+exports.OrdersComponent = OrdersComponent;
 
 
 /***/ }),

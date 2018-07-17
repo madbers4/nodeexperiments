@@ -1,0 +1,19 @@
+<h2>{{options.title}}</h2>
+<div>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Price</th>
+      <th>{{options.currency_1}}</th>
+      <th>{{options.currency_2}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.price}}</td>
+      <td>{{order.amount}}</td>
+      <td>{{order.price*order.amount}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

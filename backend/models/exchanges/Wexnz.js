@@ -53,12 +53,12 @@ module.exports = class extends Exchange {
             if (data[pair]) {
                 if (data[pair]['asks']) {
                     for (let order of data[pair]['asks']) {
-                        this.pushOrder(order[0], order[1], this.askName, pair);
+                        this.pushOrder(order[0], order[1], "buy", pair);
                     }
                 }
                 if (data[pair]['bids']) {
                     for (let order of data[pair]['bids']) {
-                        this.pushOrder(order[0], order[1], this.bidName, pair);
+                        this.pushOrder(order[0], order[1], "sell", pair);
                     }
                 }
             }

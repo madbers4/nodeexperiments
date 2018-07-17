@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OrdersService } from "./orders.service";
+import { OrdersService, Order, OrdersTableOptions } from "./orders.service";
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -10,12 +10,49 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent {
 
-  orders = [];
+  orders: Order[];
+  buyOrders: Order[];
+  sellOrders: Order[];
 
-  constructor(private ordersService: OrdersService) {}
+  buyOrdersTableOptions: OrdersTableOptions;
+  sellOrdersTableOptions: OrdersTableOptions;
+
+  constructor(private ordersService: OrdersService) {
+  }
 
   ngOnInit() {
-    //this.orders = this.ordersService.orders
-    this.orders = this.ordersService.getUsers();
+    this.buyOrdersTableOptions = {
+      title: "Buy Orders",
+      currency_1: "BTC",
+      currency_2: "USD"
+    };
+
+    this.sellOrdersTableOptions = {
+      title: "Sell Orders",
+      currency_1: "BTC",
+      currency_2: "USD"
+    };
+
+    setInterval(() => {
+      this.ordersService.getOrders().subscribe(orders => {
+        this.orders = orders;
+        this.sortOrders();
+      });
+    }, 2000);
+  }
+
+  sortOrders() {
+    let buyOrders = [];
+    let sellOrders = [];
+    for(let order of this.orders) {
+      if (order.type == 'buy') {
+        buyOrders.push(order);
+      } else {
+        sellOrders.push(order);
+      }
+    }
+    this.sellOrders = sellOrders;
+    this.buyOrders = buyOrders;
   }
 }
+

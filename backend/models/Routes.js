@@ -40,7 +40,7 @@ module.exports = class {
                     'url': '/api/ex/:exchange/orders/:pairs',
                     'method': this.parent.events.server.getExchangeOrders,
                     'bindTo': this.parent.events.server
-                },
+                }
             };
             this.POSTRoutes = {};
             this.PUTRoutes = {};

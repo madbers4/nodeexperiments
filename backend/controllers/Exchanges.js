@@ -19,17 +19,13 @@ module.exports = class {
 
         setInterval(function () {
             exWexnz.getOrders();
-        }.bind(this), 5000);
+        }.bind(this), 2000);
         return exWexnz;
     }
 
     actionGetOrders() {
         let exchange = this.findExchange(this.cc.req.param('exchange'));
 
-        if (!exchange) {
-            return
-        }
-        console.log(exchange);
         this.cc.res.json(exchange.orders);
         this.cc.res.end();
     }

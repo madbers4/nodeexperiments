@@ -1,15 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
+
+export interface Order {
+  price: number,
+  amount: number,
+  type: string,
+  pair: string
+}
+
+export interface OrdersTableOptions {
+  title: string,
+  currency_1: string,
+  currency_2: string
+}
+
 
 @Injectable()
 export class OrdersService {
+  config = {
+    "url": "/api/ex/wexnz/orders/btc_ucd"
+  };
 
-  orders = [];
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private http: Http) { }
-
-  getUsers() {
-    return this.http.get('/api/ex/wexnz/orders/btc_ucd');
+  getOrders(): any {
+    return this.httpClient.get<Order[]>(this.config.url, {
+      observe: 'body'
+    });
   }
-
 }

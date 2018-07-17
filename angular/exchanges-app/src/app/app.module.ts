@@ -3,22 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { BuyOrdersComponent } from './buy-orders/buy-orders.component';
-import { SellOrdersComponent } from './sell-orders/sell-orders.component';
 import { TradeHistoryComponent } from './trade-history/trade-history.component';
-import {HttpModule} from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuyOrdersComponent,
-    SellOrdersComponent,
-    TradeHistoryComponent
+    TradeHistoryComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
